@@ -1,0 +1,92 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}    % hollow font
+\usepackage{mathtools}  % arrow with text above it.
+
+\title{Selected Solutions to \emph{Linear Algebra Done Wrong}}
+\author{HUANG Jing }
+\date{August 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction of This Project}
+\emph{Linear Algebra Done Wrong} by Sergei Treil is a well-known and popular linear algebra 
+reference book for students. While when I read this book and did the exercises, I found no solution manual was available online or through any other access. So there was no good
+way to check my solution. But insights tends to hide behind mistakes or ambiguity. Moreover, 
+there would be occasions where the hint given by Sergei is not sufficient. Solution could give the  
+clue and save time. Anyway, I scanned all and did most of the problems of the first 6 chapters (2014 version) and share those I think valuable to you. Of course, there is no guarantee of the correctness of these solutions and they also may not be
+the best, either. As I'm now a PhD student
+with limited time for this project, the update is sporadic and your advice and contributions are most expected. Please contact me at huangjingonly@gmail.com and we can make this project better and really helpful for those in need. 
+
+\section*{Chapter 1. Basic Notations}
+\textbf{1.4.} Prove that a zero vector of a vector space \emph{V} is unique.
+\\ \textbf{Proof} Suppose there exist 2 different zero vectors \textbf{0$_1$} and
+\textbf{0$_2$}. So for any $\textbf{v} \in \emph{V}$, we have
+ \begin{equation*}
+    \textbf{v} + \textbf{0$_1$} = \textbf{v}
+\end{equation*}
+ \begin{equation*}
+   \textbf{v} + \textbf{0$_2$} = \textbf{v}
+\end{equation*}
+Find the difference of the equations above, we get
+\begin{equation*}
+    \textbf{0$_2$} - \textbf{0$_1$} = \textbf{v}-\textbf{v} = \textbf{0$_1$} / \textbf{0$_2$}
+\end{equation*}
+then
+\begin{equation*}
+    \textbf{0$_2$} = \textbf{0$_1$} + \textbf{0$_1$} / \textbf{0$_2$} = \textbf{0$_1$}
+\end{equation*}
+So the zero vector is unique.\\
+\\ \textbf{1.6.} Prove that the additive inverse, defined in Axiom 4 of a vector space is unique.
+\\ 
+\textbf{Proof} Assume there exist 2 different additive inverses \textbf{w$_1$} and \textbf{w$_2$} of vector $\emph{\textbf{v}} \in \emph{V}$. Then
+\begin{equation*}
+    \textbf{v} + \textbf{w$_1$} = \textbf{0}
+\end{equation*}
+\begin{equation*}
+    \textbf{v} + \textbf{w$_2$} = \textbf{0}
+\end{equation*}
+Obtain the difference of the two equations, we get
+\begin{equation*}
+    \textbf{w$_1$} - \textbf{w$_2$} = \textbf{0}
+\end{equation*}
+then
+\begin{equation*}
+     \textbf{w$_1$} = \textbf{w$_2$}
+\end{equation*}
+So the additive inverse is unique.
+\\
+\\ \textbf{1.7.} Prove that $0\textbf{v} = \textbf{0}$ for any vector $\textbf{v} \in \emph{V}$.
+\\ \textbf{Proof} $0\textbf{v} = (0\alpha)\textbf{v} = \alpha(0\textbf{v})$ for any scalar $\alpha$, so $(1-\alpha)0\textbf{v}=0$ foe all scalar $(1-\alpha)$. Then $0\textbf{v} = \textbf{0}$.
+\\
+\\ \textbf{1.8.} Prove that for any vector $\textbf{v}$ its additive inverse $-\textbf{v}$ is given by $(-1)\textbf{v}$.
+\\ 
+\textbf{Proof} $\textbf{v} + (-1)\textbf{v} = (1-1)\textbf{v} = 0\textbf{v} = \textbf{0}$ and we know form \textbf{1.6} that the additive inverse is unique. So $-\textbf{v} = (-1)\textbf{v}$.
+\\
+\\ \textbf{2.5.} Let a system of vectors $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ be linearly independent but not generating. Show that it is possible to find a vector $\textbf{v$_{r+1}$}$ such that the system $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear independent.
+\\
+\textbf{Proof} Take $\textbf{v$_{r+1}$}$ that can not be represented as $\sum_{k=1}^r\alpha_k\textbf{v$_k$}$. It's possible because $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ is not generating. Now we need to show $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear independent. Suppose that $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear dependent. i.e. $$\alpha_1\textbf{v$_1$}+\alpha_2\textbf{v$_2$}+...+\alpha_r\textbf{v$_r$}+\alpha_{r+1}\textbf{v$_{r+1}$}=\textbf{0}$$ and $\sum_{k=1}^{r+1}|\alpha_k|\neq0$. If $\alpha_{r+1}=0$, then $$\alpha_1\textbf{v$_1$}+\alpha_2\textbf{v$_2$}+...+\alpha_r\textbf{v$_r$}=\textbf{0}$$ and $\sum_{k=1}^r|\alpha_k|\neq0$. This contradicts that $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ is linearly independent. So $\alpha_{r+1}\neq0$. Thus $\textbf{v$_{r+1}$}$ can be represented as $$\textbf{v$_{r+1}$}=-\frac{1}{\alpha_{r+1}}\sum_{k=1}^r\alpha_k\textbf{v$_k$}$$This contradicts the premise that $\textbf{v$_{r+1}$}$ can not be represented by $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$. Thus, the system $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linearly independent.
+\\
+\\ \textbf{3.2.} Let a linear transformation in $\mathbb{R}^2$ be in the line $x_1 = x_2$. Find its matrix.\\
+\textbf{Solution 1.} Reflection is linear transformation. It is completely defined on the standard basis.  And $\textbf{e$_1$}=[1 $\:$ 0]^{\textbf{T}}\xRightarrow{T} \textbf{r$_1$}= [0 $\:$ 1]^{\textbf{T}}$, $\textbf{e$_2$}=[0 $\:$ 1]^{\textbf{T}}\xRightarrow{T} \textbf{r$_2$} = [1 $\:$ 0]^{\textbf{T}}$. So the matrix is the combination of the two transformed standard basis as its first and second column. i.e.
+\begin{equation*}
+    T=
+    [\textbf{r$_1$} \: \textbf{r$_2$}] =
+    \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{bmatrix}
+\end{equation*}
+\textbf{Solution 2. (A more general method)}  Let $\alpha$ be the angle between the $x-$axis and the line. The reflection can be achieved through following steps: first, rotate the line around the origin ($z-$axis in 3D space) $-\alpha$ so the line align with the $x-$axis (This line happen to pass through the origin, if not, translation is needed in advance to make the line pass through the origin). Secondly, perform reflection about the $x-$axis. Lastly, we need to rotate the current frame back to its original location or perform other corresponding inverse transformation.So 
+\begin{equation}
+    T = R(-\alpha)\cdot Ref \cdot R(\alpha)
+\end{equation}
+$$......$$
+\section*{Chapter 2. Systems of linear equations}
+\end{document}
