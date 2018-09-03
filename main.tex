@@ -17,17 +17,12 @@
 
 \section*{Introduction of This Project}
 \emph{Linear Algebra Done Wrong} by Sergei Treil is a well-known and popular linear algebra 
-reference book for students. While when I read this book and did the exercises, I found no solution manual was available online or through any other access. So there was no good
-way to check my solution. But insights tends to hide behind mistakes or ambiguity. Moreover, 
-there would be occasions where the hint given by Sergei is not sufficient. Solution could give the  
-clue and save time. Anyway, I scanned all and did most of the problems of the first 6 chapters (2014 version) and share those I think valuable to you. Of course, there is no guarantee of the correctness of these solutions and they also may not be
-the best, either. As I'm now a PhD student
-with limited time for this project, the update is sporadic and your advice and contributions are most expected. Please contact me at huangjingonly@gmail.com and we can make this project better and really helpful for those in need. 
+reference book for students. While when I read this book and did the exercises, I found no solution manual was available online or through any other access. So there was no good way to check my solution. But insights tends to hide behind mistakes or ambiguity. Moreover, there would be occasions where the hint given by Sergei is not sufficient. Solution could give the clue and save time. Anyway, I scanned all and did most of the problems of the first 6 chapters (2014 version) and share those I think valuable to you. Of course, there is no guarantee of the correctness of these solutions and they also may not be the best, either. As I'm now a PhD student with limited time for this project, the update is sporadic and your advice and contributions are most expected. Please contact me at \emph{huangjingonly@gmail.com} and we can make this project better and really helpful for those in need. 
 
 \section*{Chapter 1. Basic Notations}
 \textbf{1.4.} Prove that a zero vector of a vector space \emph{V} is unique.
-\\ \textbf{Proof} Suppose there exist 2 different zero vectors \textbf{0$_1$} and
-\textbf{0$_2$}. So for any $\textbf{v} \in \emph{V}$, we have
+\\
+\textbf{Proof} Suppose there exist 2 different zero vectors \textbf{0$_1$} and \textbf{0$_2$}. So for any $\textbf{v} \in \emph{V}$, we have
  \begin{equation*}
     \textbf{v} + \textbf{0$_1$} = \textbf{v}
 \end{equation*}
@@ -83,10 +78,62 @@ So the additive inverse is unique.
     1 & 0
     \end{bmatrix}
 \end{equation*}
-\textbf{Solution 2. (A more general method)}  Let $\alpha$ be the angle between the $x-$axis and the line. The reflection can be achieved through following steps: first, rotate the line around the origin ($z-$axis in 3D space) $-\alpha$ so the line align with the $x-$axis (This line happen to pass through the origin, if not, translation is needed in advance to make the line pass through the origin). Secondly, perform reflection about the $x-$axis. Lastly, we need to rotate the current frame back to its original location or perform other corresponding inverse transformation.So 
-\begin{equation}
-    T = R(-\alpha)\cdot Ref \cdot R(\alpha)
-\end{equation}
+\textbf{Solution 2. (A more general method)}  Let $\alpha$ be the angle between the $x-$axis and the line. The reflection can be achieved through following steps: first, rotate the line around the origin ($z-$axis in 3D space) $-\alpha$ so the line aligns with the $x-$axis (This line happen to pass through the origin, if not, translation is needed in advance to make the line pass through the origin and we need to use \emph{homogeneous coordinates} since translation is not a linear transformation if represented in standard coordinates). Secondly, perform reflection about the $x-$axis. Lastly, we need to rotate the current frame back to its original location or perform other corresponding inverse transformation. So 
+\begin{equation*}
+    T = Rotz(-\alpha)\cdot Ref \cdot Rotz(\alpha)
+\end{equation*}
+That is
+\begin{equation*}
+  \begin{split}
+    T &= 
+    \begin{bmatrix}
+    cos(-\alpha) & -sin(-\alpha) \\
+    sin(-\alpha) & cos(-\alpha)
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix}
+    \begin{bmatrix}
+    cos(\alpha) & -sin(\alpha) \\
+    sin(\alpha) & cos(\alpha)
+    \end{bmatrix} \\
+    & =
+    \begin{bmatrix}
+    cos(-\frac{\pi}{4}) & -sin(-\frac{\pi}{4}) \\
+    sin(-\frac{\pi}{4}) & cos(-\frac{\pi}{4})
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix}
+    \begin{bmatrix}
+    cos(\frac{\pi}{4}) & -sin(\frac{\pi}{4}) \\
+    sin(\frac{\pi}{4}) & cos(\frac{\pi}{4})
+    \end{bmatrix} \\
+    & =
+    \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{bmatrix}
+  \end{split}
+\end{equation*}
+\\
+\textbf{3.7.} Show that any linear transformation in $\mathbb{C}$ (treated as a complex vector space) is a multiplication by $\alpha \in \mathbb{C}$.\\
+\textbf{Proof} Suppose a linear transformation $T: \mathbb{C} \xRightarrow{} \mathbb{C}$. $T(1)=a+ib$ and then $T(-1)=-T(1)=-a-ib$. Note that $i^2=-1$. Then $T(-1)=T(i^2)=iT(i)$. Thus 
+$$ T(i)=\frac{-a-ib}{i}=i(a+ib)$$
+So for any $\omega=x+iy \in \mathbb{C}$,
+\begin{equation*}
+\begin{split}
+    T(\omega) & = T(x+iy) = xT(1)+yT(i) \\
+              & = x(a+ib)+yi(a+ib) \\
+              & = (x+iy)(a+ib) \\
+              & = \omega T(1) \\
+              & = \omega \alpha
+\end{split}
+\end{equation*}
+and $\alpha = T(1)$.
+
 $$......$$
 \section*{Chapter 2. Systems of linear equations}
 \end{document}
