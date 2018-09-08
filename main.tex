@@ -133,6 +133,65 @@ So for any $\omega=x+iy \in \mathbb{C}$,
 \end{split}
 \end{equation*}
 and $\alpha = T(1)$.
+\\
+\\ \textbf{5.4.} Find the matrix of the orthogonal projection in $\mathbb{R}^2$ onto the line $x_1 = -2x_2$.\\
+\textbf{Solution} 
+\begin{equation*}
+  \begin{split}
+    T &= 
+    R(\alpha)PR(-\alpha) \\
+    &=
+    R(\alpha)
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 0 \\
+    \end{bmatrix}
+    R(-\alpha)
+  \end{split}
+\end{equation*}
+and $\alpha = tan^{-1}(-\frac{1}{2})$ so we can get the matrix is 
+\begin{equation*}
+    T = 
+    \begin{bmatrix}
+    \frac{4}{5} & -\frac{2}{5} \\
+    -\frac{2}{5} & \frac{1}{5} \\
+    \end{bmatrix}
+\end{equation*}
+\\
+\\ \textbf{5.7.} Find the matrix of the reflection through the line $y=-2x/3$. Perform all the multiplications.\\
+\textbf{Solution} \emph{(Similar to 5.4 though not exactly the same.)} \\
+\begin{equation*}
+  \begin{split}
+    T &= 
+    R(\alpha)RefR(-\alpha) \\
+    &=
+    R(\alpha)
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1 \\
+    \end{bmatrix}
+    R(-\alpha)
+  \end{split}
+\end{equation*}
+and $\alpha = tan^{-1}(-\frac{2}{3})$ so we can get the matrix is 
+\begin{equation*}
+    T = 
+    \begin{bmatrix}
+    \frac{5}{13} & -\frac{12}{13} \\
+    -\frac{12}{13} & -\frac{5}{13} \\
+    \end{bmatrix}
+\end{equation*}
+\\
+\\ \textbf{6.1.} Prove that if $A: V \rightarrow{} W$ is an isomorphism (i.e. an invertible linear transformation) and $\textbf{v$_1$, v$_2$},...,\textbf{v$_n$}$ is a basis in $V$, then $A\textbf{v$_1$}, A\textbf{v$_2$},...,A\textbf{v$_n$}$ is a basis in $W$.\\
+\textbf{Proof} Any $w\in W$, $A^{-1}w = v \in V$ and 
+\begin{equation}
+\begin{split}
+    w = Av &= A[\textbf{v$_1$}\; \textbf{v$_2$} \; ...\; \textbf{v$_n$}][v_1 \;  v_2 \; ... \; v_n]^T \\
+    &= [A\textbf{v$_1$}\; A\textbf{v$_2$} \; ...\; A\textbf{v$_n$}][v_1 \;  v_2 \; ... \; v_n]^T \\
+\end{split}
+\end{equation}
+So we can see $[A\textbf{v$_1$}\; A\textbf{v$_2$} \; ...\; A\textbf{v$_n$}]$ is in the form of a basis in $W$. Next we show that $A\textbf{v$_1$}\; A\textbf{v$_2$} \; ...\; A\textbf{v$_n$}$ is linearly independent. If not, suppose $A\textbf{v$_1$}$ can be expressed as a linear combination of $ A\textbf{v$_2$} \; A\textbf{v$_3$} \;...\; A\textbf{v$_n$}$ without loss of generality. Multiplying them with $A$ in the left side, it results in that $\textbf{v$_1$}$ can be expressed by $ \textbf{v$_2$} \; ...\; \textbf{v$_n$}$, which contradicts the fact that $\textbf{v$_1$, v$_2$},...,\textbf{v$_n$}$ is a basis in $V$. So the proposition is proved.
+
 
 $$......$$
 \section*{Chapter 2. Systems of linear equations}
