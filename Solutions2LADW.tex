@@ -1,0 +1,217 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}    % hollow font
+\usepackage{mathtools}  % arrow with text above it.
+
+\title{Selected Solutions to \emph{Linear Algebra Done Wrong}}
+\author{HUANG Jing }
+\date{August 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction of This Project}
+\emph{Linear Algebra Done Wrong} by Sergei Treil is a well-known and popular linear algebra 
+reference book for students. While when I read this book and did the exercises, I found no solution manual was available online or through any other access. So there was no good way to check my solution. But insights tends to hide behind mistakes or ambiguity. Moreover, there would be occasions where the hint given by Sergei is not sufficient. Solution could give the clue and save time. Anyway, I scanned all and did most of the problems of the first 6 chapters (2014 version) and share those I think valuable to you. Of course, there is no guarantee of the correctness of these solutions and they also may not be the best, either. As I'm now a PhD student with limited time for this project, the update is sporadic and your advice and contributions are most expected. Please contact me at \emph{huangjingonly@gmail.com} and we can make this project better and really helpful for those in need. 
+
+\section*{Chapter 1. Basic Notations}
+\textbf{1.4.} Prove that a zero vector of a vector space \emph{V} is unique.
+\\
+\textbf{Proof} Suppose there exist 2 different zero vectors \textbf{0$_1$} and \textbf{0$_2$}. So for any $\textbf{v} \in \emph{V}$, we have
+ \begin{equation*}
+    \textbf{v} + \textbf{0$_1$} = \textbf{v}
+\end{equation*}
+ \begin{equation*}
+   \textbf{v} + \textbf{0$_2$} = \textbf{v}
+\end{equation*}
+Find the difference of the equations above, we get
+\begin{equation*}
+    \textbf{0$_2$} - \textbf{0$_1$} = \textbf{v}-\textbf{v} = \textbf{0$_1$} / \textbf{0$_2$}
+\end{equation*}
+then
+\begin{equation*}
+    \textbf{0$_2$} = \textbf{0$_1$} + \textbf{0$_1$} / \textbf{0$_2$} = \textbf{0$_1$}
+\end{equation*}
+So the zero vector is unique.\\
+\\ \textbf{1.6.} Prove that the additive inverse, defined in Axiom 4 of a vector space is unique.
+\\ 
+\textbf{Proof} Assume there exist 2 different additive inverses \textbf{w$_1$} and \textbf{w$_2$} of vector $\emph{\textbf{v}} \in \emph{V}$. Then
+\begin{equation*}
+    \textbf{v} + \textbf{w$_1$} = \textbf{0}
+\end{equation*}
+\begin{equation*}
+    \textbf{v} + \textbf{w$_2$} = \textbf{0}
+\end{equation*}
+Obtain the difference of the two equations, we get
+\begin{equation*}
+    \textbf{w$_1$} - \textbf{w$_2$} = \textbf{0}
+\end{equation*}
+then
+\begin{equation*}
+     \textbf{w$_1$} = \textbf{w$_2$}
+\end{equation*}
+So the additive inverse is unique.
+\\
+\\
+\textbf{1.7.} Prove that $0\textbf{v} = \textbf{0}$ for any vector $\textbf{v} \in \emph{V}$.
+\\ \textbf{Proof} $0\textbf{v} = (0\alpha)\textbf{v} = \alpha(0\textbf{v})$ for any scalar $\alpha$, so $(1-\alpha)0\textbf{v}=0$ foe all scalar $(1-\alpha)$. Then $0\textbf{v} = \textbf{0}$.
+\\
+\\
+\textbf{1.8.} Prove that for any vector $\textbf{v}$ its additive inverse $-\textbf{v}$ is given by $(-1)\textbf{v}$.
+\\ 
+\textbf{Proof} $\textbf{v} + (-1)\textbf{v} = (1-1)\textbf{v} = 0\textbf{v} = \textbf{0}$ and we know form \textbf{1.6} that the additive inverse is unique. So $-\textbf{v} = (-1)\textbf{v}$.
+\\
+\\
+\textbf{2.5.} Let a system of vectors $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ be linearly independent but not generating. Show that it is possible to find a vector $\textbf{v$_{r+1}$}$ such that the system $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear independent.
+\\
+\textbf{Proof} Take $\textbf{v$_{r+1}$}$ that can not be represented as $\sum_{k=1}^r\alpha_k\textbf{v$_k$}$. It's possible because $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ is not generating. Now we need to show $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear independent. Suppose that $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linear dependent. i.e. $$\alpha_1\textbf{v$_1$}+\alpha_2\textbf{v$_2$}+...+\alpha_r\textbf{v$_r$}+\alpha_{r+1}\textbf{v$_{r+1}$}=\textbf{0}$$ and $\sum_{k=1}^{r+1}|\alpha_k|\neq0$. If $\alpha_{r+1}=0$, then $$\alpha_1\textbf{v$_1$}+\alpha_2\textbf{v$_2$}+...+\alpha_r\textbf{v$_r$}=\textbf{0}$$ and $\sum_{k=1}^r|\alpha_k|\neq0$. This contradicts that $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$ is linearly independent. So $\alpha_{r+1}\neq0$. Thus $\textbf{v$_{r+1}$}$ can be represented as $$\textbf{v$_{r+1}$}=-\frac{1}{\alpha_{r+1}}\sum_{k=1}^r\alpha_k\textbf{v$_k$}$$This contradicts the premise that $\textbf{v$_{r+1}$}$ can not be represented by $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$}$. Thus, the system $\textbf{v$_1$},\textbf{v$_2$},...,\textbf{v$_r$},\textbf{v$_{r+1}$}$ is linearly independent.
+\\
+\\
+\textbf{3.2.} Let a linear transformation in $\mathbb{R}^2$ be in the line $x_1 = x_2$. Find its matrix.\\
+\textbf{Solution 1.} Reflection is linear transformation. It is completely defined on the standard basis.  And $\textbf{e$_1$}=[1 $\:$ 0]^{\textbf{T}}\xRightarrow{T} \textbf{r$_1$}= [0 $\:$ 1]^{\textbf{T}}$, $\textbf{e$_2$}=[0 $\:$ 1]^{\textbf{T}}\xRightarrow{T} \textbf{r$_2$} = [1 $\:$ 0]^{\textbf{T}}$. So the matrix is the combination of the two transformed standard basis as its first and second column. i.e.
+\begin{equation*}
+    T=
+    [\textbf{r$_1$} \: \textbf{r$_2$}] =
+    \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{bmatrix}
+\end{equation*}
+\textbf{Solution 2. (A more general method)}  Let $\alpha$ be the angle between the $x-$axis and the line. The reflection can be achieved through following steps: first, rotate the line around the origin ($z-$axis in 3D space) $-\alpha$ so the line aligns with the $x-$axis (This line happen to pass through the origin, if not, translation is needed in advance to make the line pass through the origin and we need to use \emph{homogeneous coordinates} since translation is not a linear transformation if represented in standard coordinates). Secondly, perform reflection about the $x-$axis. Lastly, we need to rotate the current frame back to its original location or perform other corresponding inverse transformation. So 
+\begin{equation*}
+    T = Rotz(-\alpha)\cdot Ref \cdot Rotz(\alpha)
+\end{equation*}
+That is
+\begin{equation*}
+  \begin{split}
+    T &= 
+    \begin{bmatrix}
+    cos(-\alpha) & -sin(-\alpha) \\
+    sin(-\alpha) & cos(-\alpha)
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix}
+    \begin{bmatrix}
+    cos(\alpha) & -sin(\alpha) \\
+    sin(\alpha) & cos(\alpha)
+    \end{bmatrix} \\
+    & =
+    \begin{bmatrix}
+    cos(-\frac{\pi}{4}) & -sin(-\frac{\pi}{4}) \\
+    sin(-\frac{\pi}{4}) & cos(-\frac{\pi}{4})
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix}
+    \begin{bmatrix}
+    cos(\frac{\pi}{4}) & -sin(\frac{\pi}{4}) \\
+    sin(\frac{\pi}{4}) & cos(\frac{\pi}{4})
+    \end{bmatrix} \\
+    & =
+    \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{bmatrix}
+  \end{split}
+\end{equation*}
+\\
+\textbf{3.7.} Show that any linear transformation in $\mathbb{C}$ (treated as a complex vector space) is a multiplication by $\alpha \in \mathbb{C}$.\\
+\textbf{Proof} Suppose a linear transformation $T: \mathbb{C} \xRightarrow{} \mathbb{C}$. $T(1)=a+ib$ and then $T(-1)=-T(1)=-a-ib$. Note that $i^2=-1$. Then $T(-1)=T(i^2)=iT(i)$. Thus 
+$$ T(i)=\frac{-a-ib}{i}=i(a+ib)$$
+So for any $\omega=x+iy \in \mathbb{C}$,
+\begin{equation*}
+\begin{split}
+    T(\omega) & = T(x+iy) = xT(1)+yT(i) \\
+              & = x(a+ib)+yi(a+ib) \\
+              & = (x+iy)(a+ib) \\
+              & = \omega T(1) \\
+              & = \omega \alpha
+\end{split}
+\end{equation*}
+and $\alpha = T(1)$.
+\\
+\\
+\textbf{5.4.} Find the matrix of the orthogonal projection in $\mathbb{R}^2$ onto the line $x_1 = -2x_2$.\\
+\textbf{Solution} 
+\begin{equation*}
+  \begin{split}
+    T &= 
+    R(\alpha)PR(-\alpha) \\
+    &=
+    R(\alpha)
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 0 \\
+    \end{bmatrix}
+    R(-\alpha)
+  \end{split}
+\end{equation*}
+and $\alpha = tan^{-1}(-\frac{1}{2})$ so we can get the matrix is 
+\begin{equation*}
+    T = 
+    \begin{bmatrix}
+    \frac{4}{5} & -\frac{2}{5} \\
+    -\frac{2}{5} & \frac{1}{5} \\
+    \end{bmatrix}
+\end{equation*}
+\\
+\textbf{5.7.} Find the matrix of the reflection through the line $y=-2x/3$. Perform all the multiplications.\\
+\textbf{Solution} \emph{(Similar to 5.4 though not exactly the same.)} \\
+\begin{equation*}
+  \begin{split}
+    T &= 
+    R(\alpha)RefR(-\alpha) \\
+    &=
+    R(\alpha)
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & -1 \\
+    \end{bmatrix}
+    R(-\alpha)
+  \end{split}
+\end{equation*}
+and $\alpha = tan^{-1}(-\frac{2}{3})$ so we can get the matrix is 
+\begin{equation*}
+    T = 
+    \begin{bmatrix}
+    \frac{5}{13} & -\frac{12}{13} \\
+    -\frac{12}{13} & -\frac{5}{13} \\
+    \end{bmatrix}
+\end{equation*}
+\\ \textbf{6.1.} Prove that if $A: V \rightarrow{} W$ is an isomorphism (i.e. an invertible linear transformation) and $\textbf{v$_1$, v$_2$},...,\textbf{v$_n$}$ is a basis in $V$, then $A\textbf{v$_1$}, A\textbf{v$_2$},...,A\textbf{v$_n$}$ is a basis in $W$.\\
+\textbf{Proof} Any $w\in W$, $A^{-1}w = v \in V$ and 
+\begin{equation*}
+	\begin{split}
+    w = Av &= A[\textbf{v$_1$}\; \textbf{v$_2$} \; ...\; \textbf{v$_n$}][v_1 \;  v_2 \; ... \; v_n]^T \\
+    &= [A\textbf{v$_1$}\; A\textbf{v$_2$} \; ...\; A\textbf{v$_n$}][v_1 \;  v_2 \; ... \; v_n]^T \\
+	\end{split}
+\end{equation*}
+So we can see $A\textbf{v$_1$}, A\textbf{v$_2$}, ..., A\textbf{v$_n$}$ is generating in $W$. Next we show that $A\textbf{v$_1$}\; A\textbf{v$_2$} \; ...\; A\textbf{v$_n$}$ is linearly independent. If not, suppose $A\textbf{v$_1$}$ can be expressed as a linear combination of $ A\textbf{v$_2$} \; A\textbf{v$_3$} \;...\; A\textbf{v$_n$}$ without loss of generality. Multiplying them with $A$ in the left side, it results in that $\textbf{v$_1$}$ can be expressed by $ \textbf{v$_2$} \; ...\; \textbf{v$_n$}$, which contradicts the fact that $\textbf{v$_1$, v$_2$},...,\textbf{v$_n$}$ is a basis in $V$. So the proposition is proved.
+\\
+\\
+\textbf{6.11.} Find the matrix of the rotation in $\mathbb{R}^3$ through the angle $\alpha$ around the vector $(1,2,3)^T$. We assume that the rotation is counterclockwise if we sit at the tip of the vector and looking at the origin.
+\\ \textbf{Solution} Assume that the given vector lies along with the $x$-axis direction of another frame $\{C\}$ whose origin is coindident with that of the given base frame $\{B\}$.\\
+For a point A or a position vector $\prescript{0}{}{P_A}$ (means the position of A expressed in frame $\{0\}$), the rotation about the vector $\hat{K}=(1,2,3)^T$ through $\alpha$ is expressed by $rot(\hat{K},\alpha)$. The resultant vector is $rot(\hat{K},\alpha)\prescript{0}{}{P_A}$. On the other hand, the resultant vector can be regarded as the corresponding position vector in frame $\{C\}$ rotated about $x$-axis of frame $\{C\}$ and then expressed in the original base frame. i.e.
+\begin{equation*}
+	\begin{split}
+	rot(\hat{K},\alpha)\prescript{0}{}{P_A} &= \prescript{0}{C}{T}rot(x,\alpha)\prescript{C}{}{P_A} \\
+	                                        &= \prescript{0}{C}{T}rot(x,\alpha)\prescript{C}{0}{T}\prescript{0}{}{P_A} \;\;\;(\prescript{0}{} {P_A}=\prescript{0}{C}{T}\prescript{C}{}{P_A})\\
+	                                        &= \prescript{0}{C}{T}rot(x,\alpha)\prescript{0}{C}{T^{-1}}\prescript{0}{}{P_A} 
+	\end{split}
+\end{equation*}
+The equation above holds for all $\prescript{0}{}{P_A}$, so we achieve that
+\begin{equation*}
+	rot(\hat{K},\alpha) = \prescript{0}{C}{T}rot(x,\alpha)\prescript{0}{C}{T^{-1}}
+\end{equation*}
+This is a general result. Then what we need to do is to get the transformation matrix from frame $\{0\}$ to the intermediate frame $\{C\}$, which actually is a rotation matrix. This process can be performed by using Euler angles when we konw the information about the vector. The specific computation is not shown here and interested readers can find related contents in some robotis books like \emph{Introduction to Robotics Mechanics and Control} by John Craig or through other accesses.
+$$......$$
+\section*{Chapter 2. Systems of linear equations}
+\end{document}
